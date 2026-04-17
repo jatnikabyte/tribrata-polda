@@ -16,7 +16,7 @@ new #[Title('Subscriber')] class extends Component {
     public string $search = '';
 
     #[Url]
-    public string $sortBy = 'subscribed_at';
+    public string $sortBy = 'id';
 
     #[Url]
     public string $sortDirection = 'desc';

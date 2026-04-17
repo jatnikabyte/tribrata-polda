@@ -15,10 +15,10 @@ new #[Title('Pidato')] class extends Component {
     public string $search = '';
 
     #[Url]
-    public string $sortBy = 'title';
+    public string $sortBy = 'id';
 
     #[Url]
-    public string $sortDirection = 'asc';
+    public string $sortDirection = 'desc';
 
     public $deleteId = null;
 
