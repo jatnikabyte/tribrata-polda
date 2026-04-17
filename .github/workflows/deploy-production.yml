@@ -65,6 +65,9 @@ jobs:
             # Symlink storage to public_html
             ln -sfn ${{ secrets.PRODUCTION_PATH }}/storage/app/public ${{ secrets.PRODUCTION_PUBLIC_PATH }}/storage
             
+            # Remove current build assets 
+            rm -rf ${{ secrets.PRODUCTION_PUBLIC_PATH }}/public/build/assets
+
             # Copy public assets to public_html
             cp -rf ${{ secrets.PRODUCTION_PATH }}/public/. ${{ secrets.PRODUCTION_PUBLIC_PATH }}/
             
