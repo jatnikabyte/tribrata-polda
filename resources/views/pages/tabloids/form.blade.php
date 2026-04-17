@@ -19,8 +19,9 @@ new #[Title('Formulir Tabloid')] class extends Component {
         if ($tabloid) {
             $this->form->tabloid = $tabloid;
             $this->form->title = $this->tabloid->title;
+            $this->form->cover = $this->tabloid->cover;
             $this->form->file_pdf = $this->tabloid->file_pdf;
-            $this->form->description = $this->tabloid->description ?? '';
+            $this->form->edition_of = $this->tabloid->edition_of;
             $this->form->is_active = $this->tabloid->is_active;
         }
     }
