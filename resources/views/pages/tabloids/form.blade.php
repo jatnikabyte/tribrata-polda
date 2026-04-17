@@ -19,7 +19,6 @@ new #[Title('Formulir Tabloid')] class extends Component {
         if ($tabloid) {
             $this->form->tabloid = $tabloid;
             $this->form->title = $this->tabloid->title;
-            $this->form->cover = $this->tabloid->cover;
             $this->form->file_pdf = $this->tabloid->file_pdf;
             $this->form->edition_of = $this->tabloid->edition_of;
             $this->form->is_active = $this->tabloid->is_active;
@@ -63,7 +62,7 @@ new #[Title('Formulir Tabloid')] class extends Component {
             <x-form.input type="number" name="form.edition_of" wire:model="form.edition_of" :required="true" label="Edisi ke-" placeholder="Isi dengan angka" />
 
             {{-- Cover --}}
-            <x-form.image name="form.cover" wire:model="form.cover" :required="!$tabloid" label="Sampul" hint="Upload gambar sampul tabloid (maks. 2MB)" :currentImage="$tabloid?->cover ? asset('storage/' . $tabloid->cover) : null" />
+            <x-form.image name="form.cover" wire:model="form.cover" label="Sampul" hint="Upload gambar sampul tabloid (maks. 2MB)" :currentImage="$tabloid?->cover ? asset('storage/' . $tabloid->cover) : null" />
 
             {{-- File --}}
             <x-form.filemanager-picker name="form.file_pdf" wire:model="form.file_pdf" label="File Tabloid (PDF)" :currentImage="$tabloid?->file_pdf ? url($tabloid->file_pdf) : null" />
