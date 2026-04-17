@@ -1,0 +1,26 @@
+.kt-checkbox {
+    &:checked {
+        border-color: inherit;
+    }
+}
+
+/* Quill Editor Styles */
+.quill-editor {
+    @apply border border-border rounded-lg bg-white;
+}
+
+.quill-editor .ql-toolbar {
+    @apply border-b border-border rounded-t-lg bg-default-50;
+}
+
+.quill-editor .ql-container {
+    @apply rounded-b-lg;
+}
+
+.quill-editor .ql-editor {
+    @apply min-h-[150px] font-sans text-default-800;
+}
+
+.quill-editor .ql-editor.ql-blank::before {
+    @apply text-default-400;
+}

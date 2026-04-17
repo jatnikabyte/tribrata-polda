@@ -1,0 +1,82 @@
+.custom-scroll {
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar:vertical {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar:horizontal {
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @apply rounded-lg bg-slate-300/50;
+    }
+
+    &::-webkit-scrollbar-track {
+        @apply bg-transparent rounded-lg;
+    }
+
+    &::-webkit-scrollbar-corner {
+        @apply bg-transparent;
+    }
+}
+
+.filter-options li a {
+    @apply inline-flex justify-center items-center gap-x-2 text-center rounded border border-transparent px-3 py-1.5 text-sm transition-all font-semibold disabled:opacity-50 disabled:pointer-events-none bg-transparent;
+}
+
+.filter-options li.active a,
+.filter-options li:active a,
+.filter-options li:focus a,
+.filter-options li:hover a {
+    @apply bg-primary text-white;
+}
+
+/* Override accordion menu toggle active state to use primary color */
+.kt-accordion-menu-toggle[data-kt-accordion-item].active,
+[data-kt-accordion-item].active > [data-kt-accordion-toggle] .kt-accordion-menu-toggle,
+[data-kt-accordion-item].active > [data-kt-accordion-toggle].kt-accordion-menu-toggle {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+}
+
+/* Also ensure icons in active state are readable */
+.kt-accordion-menu-toggle[data-kt-accordion-item].active svg,
+[data-kt-accordion-item].active > [data-kt-accordion-toggle] .kt-accordion-menu-toggle svg,
+[data-kt-accordion-item].active > [data-kt-accordion-toggle].kt-accordion-menu-toggle svg {
+    color: var(--primary-foreground) !important;
+}
+
+/* Override accordion menu indicator active state to use primary foreground color */
+.kt-accordion-menu-indicator:hover,.kt-accordion-menu-indicator[data-kt-accordion-item].active,
+[data-kt-accordion-item].active > [data-kt-accordion-toggle] .kt-accordion-menu-indicator,
+[data-kt-accordion-item].active > [data-kt-accordion-toggle].kt-accordion-menu-indicator {
+    color: var(--primary-foreground) !important;
+}
+
+/* Override accordion menu link hover state to use primary color */
+.kt-accordion-menu-link:hover, .kt-accordion-menu-toggle:hover {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+}
+
+/* Also ensure icons in hover state are readable */
+.kt-accordion-menu-link:hover:hover svg {
+    color: var(--primary-foreground) !important;
+}
+
+/* Override accordion menu link active state to use primary color */
+.kt-accordion-menu-link.active,
+.kt-accordion-menu-link.bg-primary {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+}
+
+/* Also ensure icons in active state are readable */
+.kt-accordion-menu-link.active svg,
+.kt-accordion-menu-link.bg-primary svg {
+    color: var(--primary-foreground) !important;
+}

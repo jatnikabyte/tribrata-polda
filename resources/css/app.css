@@ -1,0 +1,66 @@
+/* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@import "tailwindcss";
+
+@import "./theme/theme.css"; /* Themes Config */
+
+@import "@keenthemes/ktui/styles.css"; /* ktui css */
+
+/* Structure */
+@import "./structure/_sidenav.css";
+@import "./structure/_topbar.css";
+@import "./structure/_general.css";
+
+/* Custom Components */
+@import "./custom/_helper.css";
+@import "./custom/_card.css";
+@import "./custom/_forms.css";
+@import "./custom/_buttons.css";
+
+/* Simplebar */
+@import "./custom/_simplebar.css";
+
+/* Quill Editor */
+@import "quill/dist/quill.snow.css";
+
+/* Source files for content extraction */
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../../app/Livewire/**/*.php';
+@source '../views/pages/**/*.blade.php';
+
+/* Iconify Plugin */
+@plugin "@iconify/tailwind4" {
+    prefixes: solar, lucide, tabler, uil;
+}
+
+/* KT Checkbox override */
+.kt-checkbox {
+    &:checked {
+        border-color: inherit;
+    }
+}
+
+/* Pagination ActiveState */
+.kt-pagination-item .kt-btn-ghost.active {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border-color: var(--color-primary);
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--color-primary);
+        color: var(--color-primary-foreground);
+    }
+
+    &:focus {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+}
+
+/* filemanager */
+@source '../../vendor/livewire-filemanager/filemanager/resources/views/**/*.blade.php';

@@ -1,0 +1,81 @@
+
+aside + .page-content {
+    @apply transition-all;
+}
+
+/* On large screens, add margin for sidenav */
+@media (min-width: 1024px) {
+    aside + .page-content {
+        @apply ms-sidenav;
+    }
+}
+
+.sidenav {
+    @apply w-sidenav fixed start-0 inset-y-0 bg-card flex flex-col border border-border z-50;
+
+    /* Mobile: hidden by default, shown when toggled */
+    @media (max-width: 1023px) {
+        @apply transform -translate-x-full transition-transform duration-300 ease-in-out;
+
+        &.show {
+            @apply translate-x-0;
+        }
+    }
+
+    /* Desktop: always visible */
+    @media (min-width: 1024px) {
+        @apply flex;
+    }
+
+    .kt-accordion-menu-link i,
+    .kt-accordion-menu-icon {
+        @apply !size-5;
+    }
+
+    .kt-accordion-menu-content {
+        @apply ps-9.5;
+    }
+
+    .kt-accordion-menu-sub {
+        @apply relative space-y-1.5;
+
+        a {
+            @apply relative;
+        }
+
+        a::before {
+            content: "";
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 14 14'%3E%3Cpath d='M1 1v4a8 8 0 0 0 8 8h4' stroke='%23efefef' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") 50% 50% / 100% no-repeat;
+            @apply absolute -start-4.5 top-0.5 size-4 bg-default-200;
+        }
+    }
+
+    .kt-accordion-menu-sub::before {
+        content: "";
+        @apply absolute -top-1 -start-4.5 bottom-7 w-0.5 bg-default-200;
+    }
+}
+
+/* Sidenav overlay for mobile */
+.sidenav-overlay {
+    @apply fixed inset-0 bg-black/50 z-40 opacity-0 pointer-events-none transition-opacity duration-300;
+
+    &.show {
+        @apply opacity-100 pointer-events-auto;
+    }
+}
+
+/* Drawer header styling */
+.kt-drawer-header {
+    @apply flex items-center px-6;
+}
+
+/* Drawer content styling */
+.kt-drawer-content {
+    @apply flex-1 overflow-y-auto;
+}
+
+/* Scrollable content */
+.kt-scrollable {
+    @apply overflow-y-auto;
+}

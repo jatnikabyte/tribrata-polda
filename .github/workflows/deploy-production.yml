@@ -1,0 +1,67 @@
+name: Deploy to Production
+
+# Manual trigger with confirmation
+# Go to Actions tab → Select "Deploy to Production" → Run workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Type "deploy" to confirm production deployment'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    if: github.event.inputs.confirmation == 'deploy'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: dom, curl, xml, zip, pdo, pdo_mysql, fileinfo, gd
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: Clear caches
+        run: |
+          php artisan config:clear
+          php artisan cache:clear
+          php artisan view:clear
+
+      - name: Run migrations
+        run: |
+          php artisan migrate --force
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USER }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          port: ${{ secrets.PRODUCTION_PORT || '22' }}
+          script: |
+            cd ${{ secrets.PRODUCTION_PATH }}
+            
+            # Pull latest code
+            git pull origin main
+            
+            # Install dependencies
+            composer install --no-dev --optimize-autoloader --no-interaction
+            
+            # Clear caches
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            
+            # Restart queue/fpm if needed
+            # sudo systemctl restart php-fpm
+            # sudo systemctl restart queue-worker
