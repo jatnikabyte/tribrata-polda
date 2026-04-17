@@ -31,16 +31,6 @@ jobs:
         run: |
           composer install --no-dev --optimize-autoloader --no-interaction
 
-      - name: Clear caches
-        run: |
-          php artisan config:clear
-          php artisan cache:clear
-          php artisan view:clear
-
-      - name: Run migrations
-        run: |
-          php artisan migrate --force
-
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -66,7 +56,7 @@ jobs:
             ln -sfn ${{ secrets.PRODUCTION_PATH }}/storage/app/public ${{ secrets.PRODUCTION_PUBLIC_PATH }}/storage
             
             # Remove current build assets 
-            rm -rf ${{ secrets.PRODUCTION_PUBLIC_PATH }}/public/build/assets
+            rm -rf ${{ secrets.PRODUCTION_PUBLIC_PATH }}/build/assets
 
             # Copy public assets to public_html
             cp -rf ${{ secrets.PRODUCTION_PATH }}/public/. ${{ secrets.PRODUCTION_PUBLIC_PATH }}/
