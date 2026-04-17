@@ -43,7 +43,7 @@ jobs:
             cd ${{ secrets.PRODUCTION_PATH }}
             
             # Pull latest code
-            git pull https://${{ secrets.GITHUB_PAT }}@github.com/${{ github.repository }}.git main
+            git pull https://${{ secrets.PRODUCTION_PAT }}@github.com/${{ github.repository }}.git main
             
             # Install dependencies
             composer install --no-dev --optimize-autoloader --no-interaction
