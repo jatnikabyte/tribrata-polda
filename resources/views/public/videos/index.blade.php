@@ -17,7 +17,7 @@
                     @foreach ($videos as $video)
                         <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
                             <!-- Video Thumbnail -->
-                            <div class="relative aspect-video bg-gray-900 overflow-hidden cursor-pointer" onclick="openVideo('{{ $video->video_link }}')">
+                            <div class="relative aspect-video bg-gray-900 overflow-hidden cursor-pointer" data-open-video="{{ $video->video_link }}">
                                 @if ($video->cover)
                                     <img src="{{ asset('storage/' . $video->cover) }}" alt="{{ $video->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                                 @else

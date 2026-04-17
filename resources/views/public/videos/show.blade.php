@@ -14,7 +14,7 @@
     <section class="py-16 bg-gray-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Video Cover -->
-            <div onclick="openVideo('{{ $video->video_link }}')" class="bg-black rounded-2xl overflow-hidden shadow-2xl mb-8 cursor-pointer group hover:shadow-polri-gold/30 transition-all duration-300">
+            <div data-open-video="{{ $video->video_link }}" class="bg-black rounded-2xl overflow-hidden shadow-2xl mb-8 cursor-pointer group hover:shadow-polri-gold/30 transition-all duration-300">
                 <div class="aspect-video relative">
                     @if ($video->cover)
                         <img src="{{ asset('storage/' . $video->cover) }}" alt="{{ $video->title }}" class="w-full h-full object-cover group">

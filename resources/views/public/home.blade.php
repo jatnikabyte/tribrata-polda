@@ -167,7 +167,7 @@
                 @if ($videos->count() > 0)
                     @foreach ($videos as $video)
                         <div class="group bg-linear-to-b from-gray-900 to-polri-black rounded-2xl shadow-2xl hover:shadow-polri-primary/30 transition-all duration-500 overflow-hidden border border-gray-800 hover:border-polri-gold/50 transform hover:-translate-y-2">
-                            <div class="relative overflow-hidden aspect-video cursor-pointer" onclick="openVideo('{{ $video->video_link }}')">
+                            <div class="relative overflow-hidden aspect-video cursor-pointer" data-open-video="{{ $video->video_link }}">
                                 <img src="{{ asset('storage/' . $video->cover) }}" alt="{{ $video->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                                 <div class="absolute inset-0 bg-linear-to-t from-polri-black via-polri-black/50 to-transparent group-hover:from-polri-primary/80 group-hover:via-polri-primary/40 transition duration-500 flex items-center justify-center">
                                     <div class="w-20 h-20 bg-polri-gold/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 transition duration-500 border-2 border-polri-gold/50 shadow-2xl">
