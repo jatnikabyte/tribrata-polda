@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.PRODUCTION_USER }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           passphrase: ${{ secrets.PRODUCTION_SSH_KEY_PASSPHRASE }}
-          port: ${{ secrets.PRODUCTION_PORT || '22' }}
+          port: ${{ secrets.PRODUCTION_PORT }}
           script: |
             cd ${{ secrets.PRODUCTION_PATH }}
             
@@ -53,21 +53,23 @@ jobs:
             php artisan route:cache
             php artisan view:cache
             
+            # Remove current file
+            rm -rf ${{ secrets.PRODUCTION_PUBLIC_PATH }}/build/assets
+            rm -rf ${{ secrets.PRODUCTION_PUBLIC_PATH }}/storage
+
             # Symlink storage to public_html
             ln -sfn ${{ secrets.PRODUCTION_PATH }}/storage/app/public ${{ secrets.PRODUCTION_PUBLIC_PATH }}/storage
-            
-            # Remove current build assets 
-            rm -rf ${{ secrets.PRODUCTION_PUBLIC_PATH }}/build/assets
 
             # Copy public assets to public_html
             cp -rf ${{ secrets.PRODUCTION_PATH }}/public/. ${{ secrets.PRODUCTION_PUBLIC_PATH }}/
             
-            # Remove build manifest and assets
-            rm -f ${{ secrets.PRODUCTION_PUBLIC_PATH }}/build/manifest.json
-            rm -rf ${{ secrets.PRODUCTION_PATH }}/public/build/assets
-            
             # Copy tabloid cpanel index
             cp -f ${{ secrets.PRODUCTION_PATH }}/public/index-cpanel.php ${{ secrets.PRODUCTION_PUBLIC_PATH }}/index.php
             
+            # Remove file not use
+            rm -f ${{ secrets.PRODUCTION_PUBLIC_PATH }}/build/manifest.json
+            rm -rf ${{ secrets.PRODUCTION_PATH }}/public/build/assets
+            rm ${{ secrets.PRODUCTION_PUBLIC_PATH }}/index-cpanel.php 
+
             # Restart queue/fpm if needed
             # sudo systemctl restart queue-worker
