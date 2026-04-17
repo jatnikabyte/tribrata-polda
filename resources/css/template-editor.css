@@ -1,0 +1,277 @@
+.tpl-edit-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: #d4af37;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.tpl-edit-bar a.tpl-edit-bar-close {
+  margin-left: auto;
+  color: #fff;
+  background: #c0392b;
+  padding: 4px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.tpl-edit-bar a.tpl-edit-bar-close:hover {
+  background: #e74c3c;
+  transform: scale(1.05);
+}
+
+/* ─── Editable Wrapper ───────────────────────────── */
+.tpl-editable {
+  position: relative;
+  display: inline;
+}
+
+.tpl-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: #d4af37;
+  color: #1a1a2e;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 4px;
+  vertical-align: middle;
+  transition: all 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+
+.tpl-edit-btn:hover {
+  background: #f0c040;
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
+}
+
+/* ─── Modal ──────────────────────────────────────── */
+.tpl-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+}
+
+.tpl-modal-overlay.tpl-modal-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tpl-modal-container {
+  background: #fff;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 640px;
+  max-height: 85vh;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  border: 2px solid #d4af37;
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s;
+}
+
+.tpl-modal-visible .tpl-modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.tpl-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: #d4af37;
+  border-bottom: 2px solid #d4af37;
+}
+
+.tpl-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tpl-modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.tpl-modal-close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.tpl-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #d4af37;
+}
+
+.tpl-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  max-height: 50vh;
+}
+
+.tpl-label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.tpl-label-text {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.tpl-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #999;
+  background: #f8fafc;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.tpl-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.tpl-textarea:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.tpl-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.tpl-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.tpl-btn-cancel {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.tpl-btn-cancel:hover {
+  background: #cbd5e1;
+}
+
+.tpl-btn-save {
+  background: #d4af37;
+  color: #1a1a2e;
+}
+
+.tpl-btn-save:hover {
+  background: #f0c040;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
+.tpl-btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.tpl-hidden {
+  display: none !important;
+}
+
+/* ─── Toast ──────────────────────────────────────── */
+.tpl-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10001;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.tpl-toast-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tpl-toast-success {
+  background: linear-gradient(135deg, #059669, #10b981);
+}
+
+.tpl-toast-error {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+/* Push body down for edit bar */
+body {
+  padding-top: 42px !important;
+}

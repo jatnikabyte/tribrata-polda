@@ -22,29 +22,14 @@
     <meta property="twitter:title" content="@yield('title', 'Majalah Digital POLDA BANTEN - Media Publikasi Resmi')">
     <meta property="twitter:description" content="@yield('description', 'Media Publikasi Resmi Kepolisian Republik Indonesia. Transparan, Profesional, Terpercaya.')">
     <meta property="twitter:image" content="{{ asset('storage/settings/' . getSetting('site_logo')) }}">
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
-
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <!-- Flipbook StyleSheet -->
     <link href="{{ asset('assets/dflip/css/dflip.min.css') }}" rel="stylesheet" type="text/css">
-
-    <style>
-        .df-container {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-
-        ._df_button {
-            all: unset;
-            display: inline-flex !important;
-            cursor: pointer !important;
-        }
-    </style>
     <!-- Icons Stylesheet -->
     <link href="{{ asset('assets/dflip/css/themify-icons.min.css') }} " rel="stylesheet" type="text/css">
     @vite(['resources/css/public.css', 'resources/js/public.js'])
@@ -53,17 +38,8 @@
 
     <!-- Google tag (gtag.js) -->
     @if (env('GOOGLE_ANALYTICS_MEASUREMENT_ID'))
+        <script>window.GA_ID = '{{ env('GOOGLE_ANALYTICS_MEASUREMENT_ID') }}';</script>
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_ANALYTICS_MEASUREMENT_ID') }}"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-
-            gtag('config', '{{ env('GOOGLE_ANALYTICS_MEASUREMENT_ID') }}');
-        </script>
     @endif
 </head>
 
@@ -140,7 +116,7 @@
                 </nav>
 
                 <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden text-polri-secondary focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition">
+                <button data-toggle="mobile-menu" class="md:hidden text-polri-secondary focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -155,23 +131,23 @@
             <div class="p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-bold text-polri-black">Menu</h3>
-                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-polri-primary transition p-2">
+                    <button data-toggle="mobile-menu" class="text-gray-500 hover:text-polri-primary transition p-2">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12 12-12"></path>
                         </svg>
                     </button>
                 </div>
                 <nav class="space-y-4">
-                    <a href="{{ route('home', request()->query()) }}" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
+                    <a href="{{ route('home', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
                         Beranda
                     </a>
-                    <a href="{{ route('pages.index', request()->query()) }}" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
+                    <a href="{{ route('pages.index', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
                         Halaman
                     </a>
-                    <a href="{{ route('videos.index', request()->query()) }}" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
+                    <a href="{{ route('videos.index', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
                         Video
                     </a>
-                    <a href="{{ route('tabloids.index', request()->query()) }}" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
+                    <a href="{{ route('tabloids.index', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
                         Tabloid
                     </a>
                 </nav>
@@ -296,350 +272,10 @@
 
     @stack('scripts')
 
-    <script>
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            var mobileMenu = document.getElementById('mobileMenu');
-            var mobileMenuContent = document.getElementById('mobileMenuContent');
-
-            if (!mobileMenu || !mobileMenuContent) {
-                console.error('Mobile menu elements not found');
-                return;
-            }
-
-            if (mobileMenu.classList.contains('hidden')) {
-                // Show menu
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('flex');
-
-                setTimeout(function() {
-                    mobileMenu.classList.remove('opacity-0');
-                    mobileMenuContent.classList.remove('scale-95');
-                    mobileMenuContent.classList.add('scale-100');
-                }, 10);
-            } else {
-                // Hide menu
-                mobileMenu.classList.add('opacity-0');
-                mobileMenuContent.classList.remove('scale-100');
-                mobileMenuContent.classList.add('scale-95');
-
-                setTimeout(function() {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
-                }, 300);
-            }
-        }
-
-        function trackAndOpenFlipbook(tabloidId) {
-            fetch(`/tabloid/view/${tabloidId}`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Accept': 'application/json',
-                },
-            }).catch(() => {});
-        }
-
-        // Close mobile menu on click outside
-        document.addEventListener('click', function(e) {
-            var mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenu && e.target === mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                toggleMobileMenu();
-            }
-        });
-
-        // Close mobile menu on ESC key
-        document.addEventListener('keydown', function(e) {
-            var mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenu && !mobileMenu.classList.contains('hidden') && e.key === 'Escape') {
-                toggleMobileMenu();
-            }
-        });
-    </script>
 
     {{-- Template Inline Editor (only in edit mode) --}}
     @if (auth()->check() && request()->has('edit-template'))
-        <style>
-            /* ─── Edit Mode Bar ──────────────────────────────── */
-            .tpl-edit-bar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 9999;
-                background: linear-gradient(135deg, #1a1a2e, #16213e);
-                color: #d4af37;
-                padding: 10px 20px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-size: 13px;
-                font-weight: 600;
-                box-shadow: 0 2px 12px rgba(0, 0, 0, .4);
-                letter-spacing: .5px
-            }
-
-            .tpl-edit-bar a.tpl-edit-bar-close {
-                margin-left: auto;
-                color: #fff;
-                background: #c0392b;
-                padding: 4px 14px;
-                border-radius: 6px;
-                text-decoration: none;
-                font-size: 12px;
-                font-weight: 700;
-                transition: all .2s
-            }
-
-            .tpl-edit-bar a.tpl-edit-bar-close:hover {
-                background: #e74c3c;
-                transform: scale(1.05)
-            }
-
-            /* ─── Editable Wrapper ───────────────────────────── */
-            .tpl-editable {
-                position: relative;
-                display: inline
-            }
-
-            .tpl-edit-btn {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 22px;
-                height: 22px;
-                border: none;
-                background: #d4af37;
-                color: #1a1a2e;
-                border-radius: 4px;
-                cursor: pointer;
-                margin-left: 4px;
-                vertical-align: middle;
-                transition: all .2s;
-                padding: 0;
-                line-height: 1
-            }
-
-            .tpl-edit-btn:hover {
-                background: #f0c040;
-                transform: scale(1.15);
-                box-shadow: 0 2px 8px rgba(212, 175, 55, .5)
-            }
-
-            /* ─── Modal ──────────────────────────────────────── */
-            .tpl-modal-overlay {
-                position: fixed;
-                inset: 0;
-                z-index: 10000;
-                background: rgba(0, 0, 0, .7);
-                backdrop-filter: blur(6px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                visibility: hidden;
-                transition: all .25s
-            }
-
-            .tpl-modal-overlay.tpl-modal-visible {
-                opacity: 1;
-                visibility: visible
-            }
-
-            .tpl-modal-container {
-                background: #fff;
-                border-radius: 16px;
-                width: 90%;
-                max-width: 640px;
-                max-height: 85vh;
-                overflow: hidden;
-                box-shadow: 0 25px 60px rgba(0, 0, 0, .4);
-                border: 2px solid #d4af37;
-                transform: scale(.95) translateY(10px);
-                transition: transform .25s
-            }
-
-            .tpl-modal-visible .tpl-modal-container {
-                transform: scale(1) translateY(0)
-            }
-
-            .tpl-modal-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 16px 24px;
-                background: linear-gradient(135deg, #1a1a2e, #16213e);
-                color: #d4af37;
-                border-bottom: 2px solid #d4af37
-            }
-
-            .tpl-modal-header-left {
-                display: flex;
-                align-items: center;
-                gap: 10px
-            }
-
-            .tpl-modal-header h3 {
-                margin: 0;
-                font-size: 16px;
-                font-weight: 800;
-                letter-spacing: .5px
-            }
-
-            .tpl-modal-close-btn {
-                background: none;
-                border: none;
-                color: #fff;
-                cursor: pointer;
-                padding: 4px;
-                border-radius: 6px;
-                transition: all .2s;
-                display: flex;
-                align-items: center
-            }
-
-            .tpl-modal-close-btn:hover {
-                background: rgba(255, 255, 255, .1);
-                color: #d4af37
-            }
-
-            .tpl-modal-body {
-                padding: 24px;
-                overflow-y: auto;
-                max-height: 50vh
-            }
-
-            .tpl-label {
-                display: block;
-                margin-bottom: 16px
-            }
-
-            .tpl-label-text {
-                display: block;
-                font-size: 12px;
-                font-weight: 700;
-                color: #666;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 6px
-            }
-
-            .tpl-input {
-                width: 100%;
-                padding: 10px 14px;
-                border: 2px solid #e2e8f0;
-                border-radius: 8px;
-                font-size: 14px;
-                color: #999;
-                background: #f8fafc;
-                outline: none;
-                box-sizing: border-box
-            }
-
-            .tpl-textarea {
-                width: 100%;
-                padding: 12px 14px;
-                border: 2px solid #e2e8f0;
-                border-radius: 8px;
-                font-size: 14px;
-                font-family: inherit;
-                resize: vertical;
-                min-height: 120px;
-                outline: none;
-                transition: border-color .2s;
-                box-sizing: border-box
-            }
-
-            .tpl-textarea:focus {
-                border-color: #d4af37;
-                box-shadow: 0 0 0 3px rgba(212, 175, 55, .15)
-            }
-
-            .tpl-modal-footer {
-                display: flex;
-                justify-content: flex-end;
-                gap: 10px;
-                padding: 16px 24px;
-                border-top: 1px solid #e2e8f0;
-                background: #f8fafc
-            }
-
-            .tpl-btn {
-                padding: 10px 24px;
-                border-radius: 8px;
-                font-size: 14px;
-                font-weight: 700;
-                cursor: pointer;
-                border: none;
-                transition: all .2s
-            }
-
-            .tpl-btn-cancel {
-                background: #e2e8f0;
-                color: #64748b
-            }
-
-            .tpl-btn-cancel:hover {
-                background: #cbd5e1
-            }
-
-            .tpl-btn-save {
-                background: #d4af37;
-                color: #1a1a2e
-            }
-
-            .tpl-btn-save:hover {
-                background: #f0c040;
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(212, 175, 55, .4)
-            }
-
-            .tpl-btn-save:disabled {
-                opacity: .6;
-                cursor: not-allowed;
-                transform: none
-            }
-
-            .tpl-hidden {
-                display: none !important
-            }
-
-            /* ─── Toast ──────────────────────────────────────── */
-            .tpl-toast {
-                position: fixed;
-                bottom: 24px;
-                right: 24px;
-                z-index: 10001;
-                padding: 14px 24px;
-                border-radius: 10px;
-                font-size: 14px;
-                font-weight: 600;
-                color: #fff;
-                opacity: 0;
-                transform: translateY(20px);
-                transition: all .3s;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, .3)
-            }
-
-            .tpl-toast-visible {
-                opacity: 1;
-                transform: translateY(0)
-            }
-
-            .tpl-toast-success {
-                background: linear-gradient(135deg, #059669, #10b981)
-            }
-
-            .tpl-toast-error {
-                background: linear-gradient(135deg, #dc2626, #ef4444)
-            }
-
-            /* Push body down for edit bar */
-            body {
-                padding-top: 42px !important
-            }
-        </style>
-        @vite('resources/js/template-editor.js')
+        @vite(['resources/js/template-editor.js','resources/css/template-editor.css'])
     @endif
 
 </body>

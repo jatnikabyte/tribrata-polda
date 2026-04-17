@@ -47,7 +47,7 @@
                                     <h3 class="font-sans text-white font-black text-2xl mb-2 translate-y-6 group-hover:translate-y-0 transition duration-500 delay-100 tracking-wide">
                                         {{ $item->title }}</h3>
                                     @if (request()->cookie('subscriber_email'))
-                                        <div onclick="trackAndOpenFlipbook('{{ $item->encryptedId }}')" source="{{ asset($item->file_pdf) }}" class="_df_button">
+                                        <div data-track-flipbook="{{ $item->encryptedId }}" source="{{ asset($item->file_pdf) }}" class="_df_button">
                                             <button class="cursor-pointer px-10 py-4 bg-polri-gold text-polri-black font-black rounded-lg transform scale-90 group-hover:scale-100 transition duration-300 hover:bg-white shadow-2xl uppercase tracking-wider text-sm">
                                                 Baca Sekarang
                                             </button>
