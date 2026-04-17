@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu toggle
     document.querySelectorAll('[data-toggle="mobile-menu"]').forEach((el) => {
         el.addEventListener('click', (e) => {
-            e.preventDefault();
             toggleMobileMenu();
         });
     });

@@ -37,7 +37,7 @@
 
         <!-- Title -->
         <h2 id="subscribeModalTitle" class="text-2xl font-bold text-center mb-3 text-gray-800">
-            Konten Khusus Subscriber
+            Konten Khusus Follower
         </h2>
 
         <!-- Tabloid Title (dynamic) -->
@@ -45,14 +45,14 @@
         </p>
         <!-- Description -->
         <p class="text-gray-600 text-center text-sm leading-relaxed mb-6">
-            Untuk dapat membaca atau mengunduh tabloid ini, silakan melakukan subscribe terlebih dahulu.
-            Dengan menjadi subscriber, Anda mendapatkan akses penuh ke seluruh konten eksklusif kami.
+            Untuk dapat membaca atau mengunduh tabloid ini, silakan melakukan follow terlebih dahulu.
+            Dengan menjadi follower, Anda mendapatkan akses penuh ke seluruh konten eksklusif kami.
         </p>
 
         <!-- Buttons -->
         <div class="flex flex-col gap-3">
             <a id="subscribeBtn" href="{{ route('subscribe') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl text-center transition duration-300 shadow-md hover:shadow-lg">
-                Subscribe Gratis Sekarang
+                Follow Gratis Sekarang
             </a>
 
             <button onclick="closeSubscribeModal()" class="text-gray-500 hover:text-gray-700 text-sm transition">
