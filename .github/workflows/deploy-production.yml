@@ -68,7 +68,6 @@ jobs:
             
             # Remove file not use
             rm -f ${{ secrets.PRODUCTION_PUBLIC_PATH }}/build/manifest.json
-            rm -rf ${{ secrets.PRODUCTION_PATH }}/public/build/assets
             rm ${{ secrets.PRODUCTION_PUBLIC_PATH }}/index-cpanel.php 
 
             # Restart queue/fpm if needed
