@@ -11,6 +11,7 @@ export default defineConfig({
                 "resources/css/public.css",
                 "resources/js/public.js",
                 "resources/js/template-editor.js",
+                "resources/css/template-editor.css",
             ],
             refresh: true,
         }),

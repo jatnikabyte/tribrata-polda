@@ -17,6 +17,15 @@
       "public.css"
     ]
   },
+  "resources/css/template-editor.css": {
+    "file": "assets/template-editor-ByLTMANr.css",
+    "src": "resources/css/template-editor.css",
+    "isEntry": true,
+    "name": "template-editor",
+    "names": [
+      "template-editor.css"
+    ]
+  },
   "resources/js/app.js": {
     "file": "assets/app-CBTJif4A.js",
     "name": "app",
