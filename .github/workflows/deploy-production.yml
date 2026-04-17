@@ -37,6 +37,7 @@ jobs:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USER }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          passphrase: ${{ secrets.PRODUCTION_SSH_KEY_PASSPHRASE }}
           port: ${{ secrets.PRODUCTION_PORT || '22' }}
           script: |
             cd ${{ secrets.PRODUCTION_PATH }}
