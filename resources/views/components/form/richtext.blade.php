@@ -58,7 +58,7 @@
                                 [{
                                     'align': []
                                 }],
-                                ['link', 'image', 'clean']
+                                ['link', 'image', 'clean','code-block']
                             ]
                         }
                     });

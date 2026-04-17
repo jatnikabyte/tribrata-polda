@@ -33,7 +33,7 @@
                 <h1 class="text-2xl md:text-3xl font-black mb-2 text-white tracking-tight me-2">
                     {{ Str::title($title) }}
                 </h1>
-                @if (!request()->cookie('subscriber_email'))
+                @if (!request()->cookie('subscriber_email') && request()->is('tabloid'))
                     <button onclick="openSubscribeModal()" class="cursor-pointer inline-block px-4 py-1 bg-transparent border-2 border-polri-gold text-polri-gold font-black rounded-lg hover:bg-polri-gold hover:text-polri-black transition-all duration-300 shadow-lg hover:shadow-polri-gold/30 uppercase tracking-widest text-sm transform hover:scale-105">Follow</button>
                 @endif
             </div>
