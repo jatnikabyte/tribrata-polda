@@ -11,7 +11,7 @@
     <section class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-                <div class="prose prose-lg max-w-none">
+                <div class="prose prose-lg sun-editor-editable max-w-none">
                     {!! $page->content !!}
                 </div>
 

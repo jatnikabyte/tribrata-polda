@@ -2,7 +2,7 @@
 
 @php
     $hasError = $errors->has($name);
-    $baseId = 'quill-' . str_replace('.', '-', $name);
+    $baseId = 'suneditor-' . str_replace('.', '-', $name);
     $hasWireModel = $attributes->has('wire:model');
 @endphp
 
@@ -14,12 +14,11 @@
         </label>
     @endif
 
-    {{-- Quill Editor --}}
+    {{-- SunEditor --}}
     <div wire:ignore>
-        <div id="{{ $baseId }}" class="quill-editor @error($name) border-red-500 @enderror" style="min-height: {{ $rows * 1.5 }}rem;"></div>
+        <textarea id="{{ $baseId }}" class="sun-editor-wrapper @error($name) border-red-500 @enderror" placeholder="{{ $placeholder }}" style="min-height: {{ $rows * 1.5 }}rem;"></textarea>
         <input type="hidden" id="{{ $baseId }}-hidden" name="{{ $name }}" {{ $attributes->except('class', 'wire:model') }} @if ($hasWireModel) wire:model="{{ $name }}" @endif value="{{ old($name) ?? ($value ?? '') }}">
     </div>
-
     @if ($hint && !$hasError)
         <p class="mt-1.5 text-sm text-default-500">{{ $hint }}</p>
     @endif
@@ -32,72 +31,71 @@
 @push('scripts')
     <script>
         (function() {
-            let quillInstance = null;
+            let editorInstance = null;
 
-            function initQuill() {
-                const container = document.getElementById('{{ $baseId }}');
+            function initSunEditor() {
+                const textarea = document.getElementById('{{ $baseId }}');
                 const hiddenInput = document.getElementById('{{ $baseId }}-hidden');
 
-                if (!container || container.dataset.initialized) return;
+                if (!textarea || textarea.dataset.initialized) return;
 
                 try {
-                    quillInstance = new Quill('#{{ $baseId }}', {
+                    const initialContent = hiddenInput.value;
+
+                    editorInstance = suneditor.create('#{{ $baseId }}', {
+                        plugins: window.suneditorPlugins,
+                        buttonList: [
+                            ['undo', 'redo'],
+                            ['font', 'fontSize', 'paragraphStyle'],
+                            ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+                            ['fontColor', 'backgroundColor'],
+                            ['removeFormat'],
+                            ['align', 'list', 'table'],
+                            ['link', 'image', 'video'],
+                            ['codeView', 'preview', 'showBlocks', 'fullScreen']
+                        ],
+                        height: 'auto',
+                        minHeight: '{{ $rows * 1.5 }}rem',
                         placeholder: '{{ $placeholder }}',
-                        theme: 'snow',
-                        modules: {
-                            toolbar: [
-                                [{
-                                    'header': [1, 2, 3, false]
-                                }],
-                                ['bold', 'italic', 'underline', 'strike'],
-                                [{
-                                    'list': 'ordered'
-                                }, {
-                                    'list': 'bullet'
-                                }],
-                                [{
-                                    'align': []
-                                }],
-                                ['link', 'image', 'clean','code-block']
-                            ]
-                        }
-                    });
+                        defaultStyle: 'font-family: inherit; font-size: 14px; color: #333;',
+                        charCounter: false,
+                        toolbarWidth: 'auto',
+                        value: initialContent || '',
+                        imageResizing: true,
+                        imageWidth: '100%',
+                        cleanResourceHtml: false,
+                        events: {
+                            onChange: function(event) {
+                                const html = event.data;
+                                hiddenInput.value = html;
+                                hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
 
-                    // Set initial content with delay to ensure Livewire has updated
-                    setTimeout(() => {
-                        const initialContent = hiddenInput.value;
-                        if (initialContent && initialContent !== quillInstance.root.innerHTML) {
-                            quillInstance.root.innerHTML = initialContent;
-                        }
-                    }, 100);
-
-                    // Sync content to hidden input on change
-                    quillInstance.on('text-change', function() {
-                        const content = quillInstance.root.innerHTML;
-                        hiddenInput.value = content;
-
-                        // Sync with Livewire if wire:model is present
-                        @if ($hasWireModel)
-                            if (window.Livewire) {
-                                const livewireComponent = container.closest('[wire\\:id]');
-                                if (livewireComponent) {
-                                    window.Livewire.find(livewireComponent.getAttribute('wire:id'))
-                                        .set('{{ $name }}', content);
+                                @if ($hasWireModel)
+                                // Sync with Livewire v4
+                                if (window.Livewire) {
+                                    const livewireComponent = textarea.closest('[wire\\:id]');
+                                    if (livewireComponent) {
+                                        const component = Livewire.find(livewireComponent.getAttribute('wire\\:id'));
+                                        if (component && component.$wire) {
+                                            component.$wire.$set('{{ $name }}', html);
+                                        }
+                                    }
                                 }
+                                @endif
                             }
-                        @endif
+                        }
                     });
 
-                    container.dataset.initialized = 'true';
+
+                    textarea.dataset.initialized = 'true';
                 } catch (e) {
-                    console.error('Quill initialization error:', e);
+                    console.error('SunEditor initialization error:', e);
                 }
             }
 
             // Initialize when DOM is ready
             function scheduleInit() {
-                // Small delay to ensure Livewire has finished rendering
-                setTimeout(initQuill, 50);
+                setTimeout(initSunEditor, 50);
             }
 
             if (document.readyState === 'loading') {
@@ -108,9 +106,13 @@
 
             // Re-initialize on Livewire navigation
             document.addEventListener('livewire:navigated', () => {
-                const container = document.getElementById('{{ $baseId }}');
-                if (container) {
-                    container.dataset.initialized = '';
+                const textarea = document.getElementById('{{ $baseId }}');
+                if (textarea) {
+                    if (editorInstance) {
+                        editorInstance.destroy();
+                        editorInstance = null;
+                    }
+                    textarea.dataset.initialized = '';
                     scheduleInit();
                 }
             });

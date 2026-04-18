@@ -4,23 +4,47 @@
     }
 }
 
-/* Quill Editor Styles */
-.quill-editor {
+/* SunEditor Styles */
+.sun-editor-wrapper {
     @apply border border-border rounded-lg bg-white;
 }
 
-.quill-editor .ql-toolbar {
-    @apply border-b border-border rounded-t-lg bg-default-50;
+.sun-editor-wrapper .se-toolbar {
+    @apply border-b border-border rounded-t-lg;
 }
 
-.quill-editor .ql-container {
+.sun-editor-wrapper .se-toolbar-inner {
+    @apply bg-default-50;
+}
+
+.sun-editor-wrapper .se-container {
     @apply rounded-b-lg;
 }
 
-.quill-editor .ql-editor {
-    @apply min-h-[150px] font-sans text-default-800;
+.sun-editor-wrapper .se-wrapper {
+    @apply min-h-[150px];
 }
 
-.quill-editor .ql-editor.ql-blank::before {
-    @apply text-default-400;
+.sun-editor-wrapper .se-wrapper .se-editing-area {
+    @apply font-sans text-default-800;
+}
+.sun-editor-wrapper .se-wrapper .se-editing-area {
+    @apply font-sans text-default-800;
+}
+
+/* Fix: resized images lose width when toggling code view */
+.sun-editor-wrapper .se-component.se-image-container img {
+    width: inherit !important;
+    max-width: 100% !important;
+}
+
+/* Fix: float image spacing */
+.sun-editor-wrapper .__se__float-left,
+.sun-editor-editable .__se__float-left {
+    @apply mr-8 mb-2;
+}
+
+.sun-editor-wrapper .__se__float-right,
+.sun-editor-editable .__se__float-right {
+    @apply ml-8 mb-2;
 }

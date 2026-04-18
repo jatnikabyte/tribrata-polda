@@ -110,7 +110,7 @@
                 <!-- Desktop Navigation (On White Background -> Dark Text) -->
                 <nav class="hidden md:flex space-x-10">
                     <a href="{{ route('home', request()->query()) }}" class="nav-link relative text-polri-black hover:text-polri-primary transition font-bold text-sm uppercase tracking-widest">Beranda</a>
-                    <a href="{{ route('pages.index', request()->query()) }}" class="nav-link relative text-polri-black hover:text-polri-primary transition font-bold text-sm uppercase tracking-widest">Halaman</a>
+                    <a href="{{ url('halaman/profil') }}" class="nav-link relative text-polri-black hover:text-polri-primary transition font-bold text-sm uppercase tracking-widest">Profil</a>
                     <a href="{{ route('videos.index', request()->query()) }}" class="nav-link relative text-polri-black hover:text-polri-primary transition font-bold text-sm uppercase tracking-widest">Video</a>
                     <a href="{{ route('tabloids.index', request()->query()) }}" class="nav-link relative text-polri-black hover:text-polri-primary transition font-bold text-sm uppercase tracking-widest">Tabloid</a>
                 </nav>
@@ -141,7 +141,7 @@
                     <a href="{{ route('home', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
                         Beranda
                     </a>
-                    <a href="{{ route('pages.index', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
+                    <a href="{{ url('halaman/profil') }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
                         Halaman
                     </a>
                     <a href="{{ route('videos.index', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
@@ -212,8 +212,8 @@
                     <ul class="space-y-4">
                         <li><a href="{{ route('home', request()->query()) }}" class="text-gray-400 hover:text-polri-gold transition flex items-center font-semibold group">
                                 <span class="mr-3 text-polri-primary group-hover:text-polri-gold transition">▸</span> Beranda</a></li>
-                        <li><a href="{{ route('pages.index', request()->query()) }}" class="text-gray-400 hover:text-polri-gold transition flex items-center font-semibold group">
-                                <span class="mr-3 text-polri-primary group-hover:text-polri-gold transition">▸</span> Halaman</a></li>
+                        <li><a href="{{ url('halaman/profil') }}" class="text-gray-400 hover:text-polri-gold transition flex items-center font-semibold group">
+                                <span class="mr-3 text-polri-primary group-hover:text-polri-gold transition">▸</span> Profil</a></li>
                         <li><a href="{{ route('videos.index', request()->query()) }}" class="text-gray-400 hover:text-polri-gold transition flex items-center font-semibold group">
                                 <span class="mr-3 text-polri-primary group-hover:text-polri-gold transition">▸</span> Video</a></li>
                         <li><a href="{{ route('tabloids.index', request()->query()) }}" class="text-gray-400 hover:text-polri-gold transition flex items-center font-semibold group">

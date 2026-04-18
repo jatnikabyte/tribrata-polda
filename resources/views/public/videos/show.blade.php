@@ -44,7 +44,7 @@
                 @if ($video->description)
                     <div class="prose prose-lg max-w-none">
                         <h3 class="text-2xl font-bold text-polri-black mb-4">{!! getTemplate('video_section_detail_title') !!}</h3>
-                        <p class="text-gray-700 leading-relaxed">{!! $video->description !!}</p>
+                        <p class="text-gray-700 leading-relaxed sun-editor-editable">{!! $video->description !!}</p>
                     </div>
                 @endif
 

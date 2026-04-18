@@ -3,7 +3,7 @@
     <section id="testimonials">
         <div class="container-custom pt-30">
             <div class="card-content">
-                {!! $privacyPolicy !!}
+                <div class="sun-editor-editable">{!! $privacyPolicy !!}</div>
             </div>
         </div>
     </section>

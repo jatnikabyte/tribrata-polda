@@ -3,7 +3,7 @@
     <section id="testimonials">
         <div class="container-custom pt-30">
             <div class="card-content">
-                {!! $termCondition !!}
+                <div class="sun-editor-editable">{!! $termCondition !!}</div>
             </div>
         </div>
     </section>

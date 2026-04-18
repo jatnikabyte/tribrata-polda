@@ -21,8 +21,7 @@
 /* Simplebar */
 @import "./custom/_simplebar.css";
 
-/* Quill Editor */
-@import "quill/dist/quill.snow.css";
+/* SunEditor (CSS imported via JS for Vite) */
 
 /* Source files for content extraction */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

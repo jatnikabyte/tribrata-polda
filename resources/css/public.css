@@ -1,5 +1,33 @@
 @import "tailwindcss";
 
+/* SunEditor content rendering */
+@import 'suneditor/css/contents';
+
+/* SunEditor content display styles (frontend) */
+.sun-editor-editable h1 { @apply text-3xl font-bold mt-6 mb-4; }
+.sun-editor-editable h2 { @apply text-2xl font-bold mt-5 mb-3; }
+.sun-editor-editable h3 { @apply text-xl font-bold mt-4 mb-2; }
+.sun-editor-editable h4 { @apply text-lg font-bold mt-3 mb-2; }
+.sun-editor-editable h5 { @apply text-base font-bold mt-3 mb-2; }
+.sun-editor-editable h6 { @apply text-sm font-bold mt-3 mb-2; }
+.sun-editor-editable p { @apply mb-3 leading-relaxed; }
+.sun-editor-editable ul { @apply list-disc ml-6 mb-3; }
+.sun-editor-editable ol { @apply list-decimal ml-6 mb-3; }
+.sun-editor-editable li { @apply mb-1; }
+.sun-editor-editable blockquote { @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4; }
+.sun-editor-editable table { @apply w-full border-collapse my-4; }
+.sun-editor-editable th { @apply border border-gray-300 bg-gray-100 px-3 py-2 font-semibold; }
+.sun-editor-editable td { @apply border border-gray-300 px-3 py-2; }
+.sun-editor-editable a { @apply text-blue-600 underline hover:text-blue-800; }
+.sun-editor-editable img { @apply max-w-full h-auto rounded my-3; }
+.sun-editor-editable hr { @apply border-t border-gray-300 my-6; }
+.sun-editor-editable pre { @apply bg-gray-100 rounded p-4 overflow-x-auto my-4 text-sm; }
+.sun-editor-editable code { @apply bg-gray-100 px-1 py-0.5 rounded text-sm; }
+.sun-editor-editable iframe { @apply max-w-full my-4; }
+
+/* Float image spacing */
+.sun-editor-editable .__se__float-left { @apply mr-4 mb-2; }
+.sun-editor-editable .__se__float-right { @apply ml-4 mb-2; }
 @source '../views/layouts.public.blade.php';
 
 @theme {

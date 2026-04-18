@@ -1,10 +1,13 @@
 import './bootstrap';
 import 'simplebar';
 import 'iconify-icon';
-import Quill from 'quill';
+import suneditor, { plugins as suneditorPlugins } from 'suneditor';
+import 'suneditor/css/editor';
+import 'suneditor/css/contents';
 import ApexCharts from 'apexcharts';
 
-window.Quill = Quill;
+window.suneditor = suneditor;
+window.suneditorPlugins = suneditorPlugins;
 window.ApexCharts = ApexCharts;
 
 /**
