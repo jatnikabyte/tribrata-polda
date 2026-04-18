@@ -142,7 +142,7 @@
                         Beranda
                     </a>
                     <a href="{{ url('halaman/profil') }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
-                        Halaman
+                        Profil
                     </a>
                     <a href="{{ route('videos.index', request()->query()) }}" data-toggle="mobile-menu" class="block px-4 py-3 rounded-lg text-polri-black hover:bg-polri-primary hover:text-white transition font-bold text-lg">
                         Video
